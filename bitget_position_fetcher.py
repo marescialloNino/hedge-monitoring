@@ -44,7 +44,7 @@ async def fetch_and_print_positions():
         headers = ["timestamp", "symbol", "quantity", "amount", "entry_price"]
 
         # Write to historical CSV (append mode)
-        history_file = "hedging_positions_history.csv"
+        history_file = "../lp-data/hedging_positions_history.csv"
         file_exists = os.path.isfile(history_file)
         with open(history_file, mode='a', newline='') as f:
             writer = csv.DictWriter(f, fieldnames=headers)
@@ -53,7 +53,7 @@ async def fetch_and_print_positions():
             writer.writerows(position_data)
 
         # Write to latest CSV (overwrite mode)
-        with open("hedging_positions_latest.csv", mode='w', newline='') as f:
+        with open("../lp-data/hedging_positions_latest.csv", mode='w', newline='') as f:
             writer = csv.DictWriter(f, fieldnames=headers)
             writer.writeheader()
             writer.writerows(position_data)
